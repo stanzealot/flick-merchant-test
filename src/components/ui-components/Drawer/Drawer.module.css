@@ -1,0 +1,26 @@
+.ant-drawer .ant-drawer-mask {
+    background: transparent !important;
+}
+
+.ant-drawer-right > .ant-drawer-content-wrapper {
+    box-shadow: 0px 0px 2000px 2000px #0b1a16ba;
+}
+
+.ant-drawer-header {
+    padding: 0 !important;
+}
+
+.ant-drawer-close {
+    position: fixed;
+    z-index: 2;
+    right: 0rem;
+    top: 0.3rem;
+}
+
+@media screen and (max-width: 500px) {
+    .ant-drawer-close {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

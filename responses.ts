@@ -1,0 +1,41 @@
+[
+    {
+        status: 200,
+        message: "Customer identity fetched successfully",
+        data: {
+            identity: {
+                data: {
+                    phone_1: "08163754860",
+                    phone_2: "NA",
+                    image: "https://qrabaebwebhookbucket.s3.amazonaws.com/uploads%2FK6rpL-wSjoLE.jpg",
+                    firstname: "KABIR",
+                    full_details: {
+                        image: "https://qrabaebwebhookbucket.s3.amazonaws.com/uploads%2FK6rpL-wSjoLE.jpg",
+                        gender: "Male",
+                        date_of_birth: "18-May-1988",
+                        last_name: "GARBA",
+                        bvn: "22248882936",
+                        middle_name: "JIMOH",
+                        first_name: "KABIR",
+                        phone_number1: "08163754860",
+                        registration_date: "Invalid date",
+                        enrollment_bank: "NA",
+                        enrollment_branch: "NA",
+                        email: "NA",
+                        level_of_account: "NA",
+                        state_of_origin: "Kogi State",
+                        lga_of_origin: "Okene",
+                        lga_of_residence: "NA",
+                        marital_status: "Single",
+                        nin: "NA",
+                        residential_address: "NA",
+                        watch_listed: "NA",
+                    },
+                    address: "NA",
+                    middlename: "JIMOH",
+                    lastname: "GARBA",
+                },
+            },
+        },
+    },
+];

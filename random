@@ -1,0 +1,40 @@
+{
+    "msg": "You have successfully logged in",
+    "user": {
+        "isVulaUser": false,
+        "avatar": "",
+        "email": "bushbot6@boxmailvn.com",
+        "country": "Nigeria",
+        "name": "Valentine Offiah",
+        "password": "",
+        "business_type": "energy",
+        "is_regular": true,
+        "id": 797052928,
+        "phone": "9051843790",
+        "business_email": "bushbot6@boxmailvn.com",
+        "isEmailVerified": true,
+        "business_name": "valfenix",
+        "website": "https:/valfenix.com",
+        "is_portco": false,
+        "businessId": 797052928,
+        "is_tx": false,
+        "merchantCode": "CUS_4aH197x1MErOe9ecJoGZT",
+        "consent": true,
+        "isVerified": false,
+        "is_vc": false,
+        "dated": "2024-10-07T05:36:11.060Z",
+        "referral_code": "NA",
+        "settlementType": {
+            "settledType": "flexible",
+            "fee": "0"
+        },
+        "isLive": false,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJ1c2hib3Q2QGJveG1haWx2bi5jb20iLCJpYXQiOjE3MjgyNzk1MTN9.n3q8vnD94aFDwrRrXy-kgeCHH61N8VYXb-yI-UUuk6Q",
+        "merchantKey": "pk-U2FsdGVkX191UpY20EmGvoEKb584f421lTeYLRb9U5Bm2EZT2ubCvDnEQIabdYPrnbZWeP6dK0yuJP4ryZocrfBVnwtJ17p+Xby8Vaaf6NC/QzMmvWOgY9Y3RE2Z89Uq"
+    },
+    "isVulaUser": false,
+    "subBusinesses": [],
+    "kycStatus": "processing",
+    "date_approved": "N/A",
+    "sla": false
+}

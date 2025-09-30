@@ -1,0 +1,274 @@
+{
+    "status": 200,
+    "data": {
+        "22163600778": {
+            "accounts": [
+                {
+                    "AuthToken": "U2FsdGVkX19fK3uR+sN8mA4hkxX75ixAzd8zvjsPS+y3a46/soF+UIi0s7tiq70I",
+                    "currency": "NGN",
+                    "BankName": "FCMB",
+                    "fullName": "OLOJEDE RUTH OLUWADUROTIMI",
+                    "loginToken": "null",
+                    "Nuban": "6695949025",
+                    "device_uid": "null",
+                    "accountType": "PREMIUM SAVINGS",
+                    "userid": 0,
+                    "dated": "2023-11-28T19:07:13.060Z",
+                    "accountLinker": "null",
+                    "bvn": "22163600778",
+                    "Balance": 799341,
+                    "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                    "IsverifiedIdentity": true
+                }
+            ],
+            "info": {
+                "bvn": "22163600778",
+                "fullName": "OLOJEDE RUTH OLUWADUROTIMI",
+                "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                "email": "null",
+                "dated": "2023-11-28T19:07:13.077Z"
+            },
+            "accountCounts": 1,
+            "currencyBalances": {
+                "NGN": 799341
+            }
+        },
+        "22223260304": {
+            "accounts": [
+                {
+                    "AuthToken": "U2FsdGVkX1/Y+cA3iGxYWiRa7OYLdiNXNXo+76d56G6/se6fPfq1HbdXAqBK4/Xa",
+                    "currency": "NGN",
+                    "BankName": "Kuda Bank",
+                    "fullName": "OLOJEDE, GBADEBO DIPO",
+                    "loginToken": "U2FsdGVkX18a2JXkt/JmOGUK9pAgavKs4DP1mAPViQDm2CdR6vc1n8lVm89LdIFy_/U2FsdGVkX1/2Yco5vrJuhZzjgTkF4GPVhaWwiiwsLdA=",
+                    "Nuban": "2032826836",
+                    "device_uid": "null",
+                    "accountType": "DIGITAL_SAVINGS_ACCOUNT",
+                    "userid": "null",
+                    "dated": "2024-05-17T20:01:35.848Z",
+                    "accountLinker": {
+                        "firstName": "Jayenterprise",
+                        "lastName": "statement",
+                        "id": "c08fbb5c-3874-4890-9022-bf6141e3b9f4",
+                        "pageId": "jntUtKH2Yq",
+                        "email": "Ogbonnayakingsike@gmail.com"
+                    },
+                    "bvn": "22223260304",
+                    "Balance": 43382,
+                    "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                    "IsverifiedIdentity": true
+                }
+            ],
+            "info": {
+                "bvn": "22223260304",
+                "fullName": "OLOJEDE, GBADEBO DIPO",
+                "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                "email": "Ogbonnayakingsike@gmail.com",
+                "dated": "2024-05-17T20:01:35.951Z"
+            },
+            "accountCounts": 1,
+            "currencyBalances": {
+                "NGN": 43382
+            }
+        },
+        "22223674561": {
+            "accounts": [
+                {
+                    "AuthToken": "U2FsdGVkX1/cs6rq+tRzzilkgJ+1DQpg9pl/EzQRhs+8vpAv2SSkJy0reSw017vA",
+                    "currency": "NGN",
+                    "BankName": "Access Bank",
+                    "fullName": "CHIGOZIRIM WALI EDMUND",
+                    "loginToken": "U2FsdGVkX1+3SZcRqY6EjFJ5PZ4TmRHmGhuFq7iJsUU=_/U2FsdGVkX1+TmPRe+msofjBx3qrwY6135PAsLgVJvGA=",
+                    "Nuban": "0021436098",
+                    "device_uid": "null",
+                    "accountType": " Diamondxtra  ",
+                    "userid": "null",
+                    "dated": "2024-05-17T19:32:15.698Z",
+                    "accountLinker": {
+                        "firstName": "Jayenterprise",
+                        "lastName": "statement",
+                        "id": "5cc52d20-6632-44e6-aaef-b3c07ec1b0e6",
+                        "pageId": "5fctOlX6Hh",
+                        "email": "chigzyyy@yahoo.com"
+                    },
+                    "bvn": "22223674561",
+                    "Balance": 0,
+                    "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                    "IsverifiedIdentity": true
+                }
+            ],
+            "info": {
+                "bvn": "22223674561",
+                "fullName": "CHIGOZIRIM WALI EDMUND",
+                "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                "email": "chigzyyy@yahoo.com",
+                "dated": "2024-05-17T19:32:15.744Z"
+            },
+            "accountCounts": 1,
+            "currencyBalances": {
+                "NGN": 0
+            }
+        },
+        "22346162884": {
+            "accounts": [
+                {
+                    "AuthToken": "U2FsdGVkX18sySxusHC7S2HlPLV5y/+KDC0U5M2gGDssp1c8QIXVjbUNFW2+bl5H",
+                    "currency": "NGN",
+                    "BankName": "Access Bank",
+                    "fullName": "JULIUS OKAI ADEBO",
+                    "loginToken": "U2FsdGVkX18QK0kmfgXQef8bJXEAIIiaxvLC9SrvcpRq4aOf+fd7xPVlknqhrZIi_/U2FsdGVkX1+X+Xu7a3z4hFr1fPWMihAGwFkr62GgADg=",
+                    "Nuban": "1226910663",
+                    "device_uid": "null",
+                    "accountType": "Premier Savings ",
+                    "userid": "null",
+                    "dated": "2024-05-17T13:03:22.714Z",
+                    "accountLinker": {
+                        "firstName": "Jayenterprise",
+                        "lastName": "statement",
+                        "id": "507d9fd5-38c8-427d-ab27-0f33a11be5ad",
+                        "pageId": "Yuh7WjogZs",
+                        "email": "adebojulius84@gmail.com"
+                    },
+                    "bvn": "22346162884",
+                    "Balance": 10004348,
+                    "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                    "IsverifiedIdentity": true
+                }
+            ],
+            "info": {
+                "bvn": "22346162884",
+                "fullName": "JULIUS OKAI ADEBO",
+                "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                "email": "adebojulius84@gmail.com",
+                "dated": "2024-05-17T13:03:22.782Z"
+            },
+            "accountCounts": 1,
+            "currencyBalances": {
+                "NGN": 10004348
+            }
+        },
+        "22363294995": {
+            "accounts": [
+                {
+                    "AuthToken": "U2FsdGVkX1/T+vSU4fZYE17ztK9I148NFEE+jSQqIa/rt/AFyqWMCO/O52Ns+v0G",
+                    "currency": "NGN",
+                    "BankName": "FCMB",
+                    "fullName": "AGWOGIE DORCAS OSARUYI",
+                    "loginToken": "U2FsdGVkX1+nQjqPeJjr/K4BRDrfFaIdx8TlXBOLIDw=_/U2FsdGVkX1/6VHx7MkB/nfvIv8bnDXoUCaBiH3rhPBTTIYL+3dK1R5sbNF8YmzJ5",
+                    "Nuban": "1008371137",
+                    "device_uid": "null",
+                    "accountType": "E-SAVINGS ACCOUNT",
+                    "userid": "null",
+                    "dated": "2024-06-25T17:24:02.421Z",
+                    "accountLinker": {
+                        "firstName": "Jayenterprise",
+                        "lastName": "statement",
+                        "id": "36df6917-6b48-49d6-bead-1705c68e3dd0",
+                        "pageId": "TSvF9q7By0",
+                        "email": "adebojulius84@gmail.com"
+                    },
+                    "bvn": "22363294995",
+                    "Balance": 2905,
+                    "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                    "IsverifiedIdentity": true
+                }
+            ],
+            "info": {
+                "bvn": "22363294995",
+                "fullName": "AGWOGIE DORCAS OSARUYI",
+                "CustomerCode": "CUS_-ZLvllMKZ49okuaZdbcV5",
+                "email": "adebojulius84@gmail.com",
+                "dated": "2024-06-25T17:24:02.467Z"
+            },
+            "accountCounts": 1,
+            "currencyBalances": {
+                "NGN": 2905
+            }
+        }
+    }
+}
+
+
+
+{
+    "success": true,
+    "status": 200,
+    "msg": "You have successfully logged in",
+    "user": {
+        "isVulaUser": false,
+        "avatar": "",
+        "email": "dohojo8458@lofiey.com",
+        "country": "Nigeria",
+        "name": "Valentine Bushel",
+        "password": "",
+        "business_type": "energy",
+        "is_regular": true,
+        "id": 771887104,
+        "phone": "9051843790",
+        "business_email": "dohojo8458@lofiey.com",
+        "isEmailVerified": true,
+        "business_name": "Valfenix",
+        "website": "https://energy.com",
+        "is_portco": false,
+        "businessId": 771887104,
+        "is_tx": false,
+        "merchantCode": "CUS_KEHjUdiGDTuTzoIed0VWt",
+        "consent": true,
+        "isVerified": false,
+        "is_vc": false,
+        "dated": "2024-12-13T12:19:25.054Z",
+        "referral_code": "NA",
+        "settlementType": {
+            "settledType": "flexible",
+            "fee": "0"
+        },
+        "isLive": false,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvaG9qbzg0NThAbG9maWV5LmNvbSIsImlhdCI6MTczNDA5MjQxMX0.dGRQ0z1JJpOp2gycXQnyHH6Yf0KBVYnutlgFj7zlzkg",
+        "merchantKey": "pk-U2FsdGVkX1+WWNnXgVH1TrHHodn4YT3elISJiz4iZwijf9qbnTnMSqejXceJpYddOqkDWkddPRJTmVGtbGcn4iPvukft5RBCTmMX04bo9lEmBRsIiWlKtNDA6gz5AKIC"
+    },
+    "isVulaUser": false,
+    "subBusinesses": [],
+    "kycStatus": "processing",
+    "date_approved": "N/A",
+    "sla": false
+}
+
+
+{
+    "card": false,
+    "bank_transfer": true,
+    "customization":{
+    "brandName": Joi.string().max(100).optional(),
+    "brandColor": Joi.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/).optional(),
+    "primaryColor": Joi.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/).optional(),
+    "secondaryColor": Joi.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/).optional(),
+    "fontFamily": Joi.string().optional(),
+    "layout": Joi.string().valid('compact', 'standard', 'fullscreen').required(),
+    "alignment": Joi.string().valid('left', 'center', 'right').required(),
+    "customCSS": Joi.string().optional(),
+    "description": Joi.string().max(255).optional(),
+    "paymentButtonText": Joi.string().max(50).optional(),
+    "successMessage": Joi.string().max(255).optional(),
+    "failureMessage": Joi.string().max(255).optional(),
+    "currencySymbolPosition": Joi.string().valid('before', 'after').required(),
+    "showLogo": Joi.boolean().required(),
+    "showBrandName": Joi.boolean().required(),
+  }
+}
+
+{
+    "customization": {
+        "layout": "standard",
+        "brandName": "Jayenterprise",
+        "showLogo": true,
+        "brandColor": "#A020F0",
+        "fontFamily": "Raleway",
+        "showBrandName": true,
+        "currencySymbolPosition": "before",
+        "primaryColor": "#FFD700",
+        "alignment": "center",
+        "secondaryColor": "#FFD700"
+    },
+    "card": false,
+    "bank_transfer": true
+}

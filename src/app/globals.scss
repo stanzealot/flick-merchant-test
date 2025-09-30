@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&family=Tangerine:wght@400;700&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Sacramento&family=Tangerine:wght@400;700&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Parisienne&family=Sacramento&family=Tangerine:wght@400;700&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Great+Vibes&family=Parisienne&family=Sacramento&family=Tangerine:wght@400;700&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Great+Vibes&family=Parisienne&family=Sacramento&family=Smooch&family=Tangerine:wght@400;700&family=Zeyada&display=swap');
+
+.custom-shadow {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07) !important;
+}
+
+.custom-shadow-2x {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.07) !important;
+}
+
+::placeholder {
+  color: #828d9b;
+  opacity: 0.75;
+  font-size: 12px !important;
+}
+
+.amount_modal::placeholder {
+  color: #828d9b;
+  opacity: 0.75;
+  font-size: 25px !important;
+}
+
+.ant-picker-dropdown {
+  font-size: 12px !important;
+}
+
+.ant-notification-notice-close {
+  margin-top: -10px !important;
+}
+
+.ant-picker .ant-picker-input > input {
+  font-size: 13px !important;
+}
+
+.custom-scrollbar {
+  overflow-y: auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 10px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  border-radius: 10px !important;
+}
+
+.ant-input-outlined:focus-within {
+  box-shadow: 0 0 0 1px rgba(21, 139, 111, 0.82) !important;
+}
+
+.ant-color-picker-trigger.ant-color-picker-trigger-active {
+  box-shadow: 0 0 0 1px rgba(21, 139, 111, 0.82) !important;
+}
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #259792 !important;
+}
+
+.ant-tabs-tab-btn {
+  color: #4b5563 !important;
+  font-size: 14px;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+  background: #259792 !important;
+}
+
+.dots_dots {
+  margin: auto !important;
+  width: 100% !important;
+  height: 7px !important;
+}
+.dots_dots li {
+  width: 20px !important;
+  border-radius: 31px !important;
+  height: 7px !important;
+}
+
+.dots_dots li.slick-active {
+  width: 45px !important;
+  border-radius: 31px !important;
+  height: 7px !important;
+}
+
+.dots_dot1 {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: -30px !important;
+}
+
+.dots_dot1 li {
+  background-color: #bbdfdb !important;
+  height: 7px !important;
+}
+
+.dots_dot1 li.slick-active button {
+  background: #2f9792 !important;
+  height: 7px !important;
+}
+
+.slick-dots {
+  justify-content: start !important;
+}
+
+.menu.ant-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border-inline-end: none !important;
+  background-color: transparent;
+
+  & .ant-menu-item {
+    height: 50px;
+  }
+}
+
+.semi-circle-cvr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar.ant-layout-sider {
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: #ffffff !important;
+
+  & .sidebar-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 4px;
+  }
+
+  .ant-menu-item {
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  .ant-menu-item-selected {
+    background-color: #f5faf9 !important;
+    color: #2f9792 !important;
+
+    &::after {
+      border-right: 3px solid #2f9792 !important;
+    }
+  }
+}
+
+.ant-select-selector {
+  box-shadow: none !important;
+}
+
+.sidebar-collapsed.ant-layout-sider {
+  .ant-menu-item,
+  .ant-menu-item-selected {
+    & svg {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.header.ant-layout-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 0 32px;
+  background: white !important;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.drawer.ant-drawer-content {
+  & .ant-drawer-header {
+    display: none;
+  }
+  & .ant-drawer-body {
+    padding: 0;
+  }
+}
+
+.ant-table-wrapper .ant-table-thead > tr > th {
+  color: #666666 !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+}
+
+.ant-tooltip-inner {
+  color: #4d4d4d !important;
+  font-size: 10px !important;
+}
+
+.ant-picker-outlined:focus-within {
+  box-shadow: 0 !important;
+}
+
+.balance-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.balance-scroll::-webkit-scrollbar-thumb {
+  background-color: #d7d7d7;
+  border-radius: 10px;
+}
+
+.balance-scroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.overview-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.overview-scroll::-webkit-scrollbar-thumb {
+  background-color: #d7d7d7;
+  border-radius: 10px;
+}
+
+.overview-scroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.payout.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 0 !important;
+}
+
+.payout.ant-collapse {
+  padding: 6px 0px !important;
+  background: #ffffff !important;
+}

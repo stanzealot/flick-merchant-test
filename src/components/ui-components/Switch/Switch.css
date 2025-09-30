@@ -1,0 +1,18 @@
+.ant-switch{
+    min-width: 35px;
+    height: 19px;
+}
+
+.ant-switch .ant-switch-handle{
+    width: 15px;
+    height: 15px;
+
+}
+
+.ant-switch.ant-switch-checked {
+    background: #2F9792 !important;
+}
+
+.ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
+  background: #4AA9A5 !important;
+}

@@ -1,0 +1,21 @@
+.ant-select-item-option {
+    padding: 14px 15px !important;
+  }
+
+  .ant-select .ant-select-selection-placeholder{
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #a6a9ad;
+  }
+
+  .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+    color: #828d9b;
+    opacity: 0.75;
+    font-size: 12px !important;
+  }
+
+  .ant-select .ant-select-selection-item{
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    /* color: #828d9b; */
+  }
