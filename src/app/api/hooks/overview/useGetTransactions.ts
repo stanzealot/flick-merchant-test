@@ -7,7 +7,7 @@ const useGetTransactions = ({
   endDate,
   status,
   type,
-
+  category,
   currency,
   limit,
 }: {
@@ -15,7 +15,7 @@ const useGetTransactions = ({
   endDate?: string;
   status?: any;
   type?: string;
-
+  category?: string;
   currency?: string;
   limit?: number;
 }) => {
