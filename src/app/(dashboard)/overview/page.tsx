@@ -145,6 +145,7 @@ const OverviewPage = () => {
   const formatBalance = React.useMemo(() => {
     if (!balanceData?.data) return [];
 
+    console.log("balanceData", balanceData.data);
     return balanceData.data
       .map((balance: IBalance) => {
         const iso =
