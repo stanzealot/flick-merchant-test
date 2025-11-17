@@ -21,7 +21,7 @@ export const API = {
       transactionGraph: '/transaction-graph',
       addCurrency: '/merchant/add-currency',
       paymentCards: '/get-all-payment-card',
-      createCharge: '/create-charge',
+      createCharge: 'business/create-charge', 
       charge: 'business/charge',
       verifyOtp: '/verify-otp',
       verifyPin: '/verify-pin',

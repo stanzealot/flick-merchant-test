@@ -10,7 +10,6 @@ import NewInput from '@/src/components/ui-components/Input/NewInput';
 import { FieldValues, useForm } from 'react-hook-form';
 import {
   detectCardType,
-  encryptWithPublicKey,
   removeSpaces,
 } from '@/src/utils/functions';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
@@ -18,6 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { addCardValidation } from '@/src/schema/validation/overview';
 import overview from '@/src/app/api/services/overview';
 import { openGlobalNotification } from '@/src/components/blocks/toast-notification';
+import useGetBalances from '@/src/app/api/hooks/overview/useGetBalances';
 
 type Props = {
   isOpen: boolean;
@@ -28,12 +28,19 @@ export default function AddCardModal({ isOpen, setIsOpen }: Props) {
   const [cardNumber, setCardNumber] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [expiryDate, setExpiryDate] = useState('');
-  const [cardType, setCardType] = useState<
-    'visa-icon' | 'mastercard-icon' | null
-  >(null);
+  const [cardType, setCardType] = useState<'visa-icon' | 'mastercard-icon' | null>(null);
 
-  const { fundPayload, setOpenPaymentOtp, setOpenCardList } =
-    useOverviewStore();
+
+  const { 
+    fundPayload, 
+    setOpenCardList,
+    setOpenSuccessModal,
+    setOpenFundPayout,
+    setOpenPaymentMethod,
+    setOpenAmountModal,
+  } = useOverviewStore();
+
+  const { mutate } = useGetBalances();
 
   const {
     register,
@@ -50,7 +57,6 @@ export default function AddCardModal({ isOpen, setIsOpen }: Props) {
   };
 
   const handleCardNumberChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    // Allow only numeric characters
     const rawValue = e.target.value.replace(/[^0-9]/g, '');
     setCardType(detectCardType(rawValue));
     setCardNumber(formatCardNumber(rawValue));
@@ -64,7 +70,6 @@ export default function AddCardModal({ isOpen, setIsOpen }: Props) {
       .slice(0, 5);
   };
 
-  // Handle expiry date input
   const handleExpiryDateChange = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/[^0-9]/g, '');
 
@@ -88,43 +93,107 @@ export default function AddCardModal({ isOpen, setIsOpen }: Props) {
     clearErrors('expiryDate');
   };
 
+  const closeAllModals = () => {
+    setIsOpen(false);
+    setOpenCardList(false);
+    setOpenFundPayout(false);
+    setOpenPaymentMethod(false);
+    setOpenAmountModal(false);
+  };
+
+  // const onSubmit = async (data: FieldValues) => {
+  //   try {
+  //     const response = await overview.charge({
+  //       amount: Number(fundPayload?.amount) || 0,
+  //       cardNumber: removeSpaces(data.cardNumber),
+  //       cvv: data.cvv,
+  //       cardDate: data.expiryDate,
+  //       cardName: removeSpaces(data.cardName),
+  //       transactionId: fundPayload?.transactionId,
+  //     });
+
+  //     if (response.statusCode !== 200) {
+  //       return openGlobalNotification({
+  //         description: response.message || 'Payment failed',
+  //         message: 'Error',
+  //         type: 'error',
+  //       });
+  //     }
+
+  //     closeAllModals();
+      
+  //     openGlobalNotification({
+  //       description: 'Your wallet has been funded successfully',
+  //       message: 'Success',
+  //       type: 'success',
+  //     });
+
+  //     setOpenSuccessModal(true);
+      
+  //     mutate();
+
+  //     reset();
+  //     setCardNumber('');
+  //     setExpiryDate('');
+  //     setCardType(null);
+  //     setIsChecked(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //     openGlobalNotification({
+  //       description: 'An error occurred while processing payment',
+  //       message: 'Error',
+  //       type: 'error',
+  //     });
+  //   }
+  // };
   const onSubmit = async (data: FieldValues) => {
     try {
-      console.log('data: ', data);
-      //   const word = `${removeSpaces(data.cardNumber)}|${data.cvv}|${
-      //     data.expiryDate
-      //   }|${removeSpaces(data.cardName)}`;
-      //   const encryptionKeyResponse = await overview.getEncryptionKey();
-      //   const encryptionKey = encryptWithPublicKey(
-      //     word,
-      //     encryptionKeyResponse.data.livePublicEncKey
-      //   );
-
       const response = await overview.charge({
-        amount: fundPayload?.amount || 0,
-        cardNumber: data.cardNumber,
+        amount: Number(fundPayload?.amount) || 0,
+        cardNumber: removeSpaces(data.cardNumber),
         cvv: data.cvv,
         cardDate: data.expiryDate,
-        cardName: data.cardName,
-        transactionId: 'flick-c820fed0-d0b0-47b2-9c46-8f1bc8990e7a',
+        cardName: removeSpaces(data.cardName),
+        transactionId: fundPayload?.transactionId,
       });
-
-      if (response.statusCode !== 200) {
+  
+      console.log('Charge response:', response);
+  
+      // Check if response exists and has the expected data
+      if (!response || !response.cardDetails) {
         return openGlobalNotification({
-          description: response.message,
-          message: 'Failure',
+          description: response?.message || 'Payment failed',
+          message: 'Error',
           type: 'error',
         });
       }
-
-      setIsOpen(false);
-      setOpenPaymentOtp(true);
-      console.log('Success');
+  
+      closeAllModals();
+      
+      openGlobalNotification({
+        description: 'Your wallet has been funded successfully',
+        message: 'Success',
+        type: 'success',
+      });
+  
+      setOpenSuccessModal(true);
+      
+      mutate();
+  
+      reset();
+      setCardNumber('');
+      setExpiryDate('');
+      setCardType(null);
+      setIsChecked(false);
     } catch (error) {
       console.log(error);
+      openGlobalNotification({
+        description: 'An error occurred while processing payment',
+        message: 'Error',
+        type: 'error',
+      });
     }
   };
-
   return (
     <Modal
       customWidth={470}
@@ -262,16 +331,18 @@ export default function AddCardModal({ isOpen, setIsOpen }: Props) {
           </Checkbox>
         </div>
         <div className="mt-8 flex items-center justify-between">
-          <Button className="!border !font-semibold !border-[#EAECF0] !h-[50px] !rounded-[12px] !w-[200px]">
+          <Button 
+            onClick={() => {
+              setIsOpen(false);
+              setOpenCardList(true);
+            }}
+            className="!border !font-semibold !border-[#EAECF0] !h-[50px] !rounded-[12px] !w-[200px]"
+          >
             Cancel
           </Button>
           <Button
             loading={isSubmitting}
             htmlType="submit"
-            // disabled={!paymentMethod}
-            // className={`${
-            //     !paymentMethod ? "!bg-primary-300 " : "!bg-primary-500 hover:!bg-primary-700 "
-            // } !border-none !font-semibold !h-[50px] !rounded-[12px]!text-sm !text-white !w-[200px]`}
             className="!bg-primary-500 hover:!bg-primary-700 border-none !font-semibold !h-[50px] !rounded-[12px]!text-sm !text-white !w-[200px]"
           >
             Confirm

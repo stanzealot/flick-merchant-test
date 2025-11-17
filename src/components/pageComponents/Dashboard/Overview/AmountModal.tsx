@@ -10,7 +10,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { openGlobalNotification } from '@/src/components/blocks/toast-notification';
 import overview from '@/src/app/api/services/overview';
 import { ChangeEvent } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   readonly isOpen: boolean;
@@ -41,10 +40,22 @@ export default function AmountModal({ isOpen, setIsOpen, type }: Props) {
 
   const handleConfirm = async (data: FieldValues) => {
     try {
-      const transactionId = uuidv4();
+      const response = await overview.createCharge({
+        amount: Number(data.amount),
+        currency: 'NGN',
+        transactionId: crypto.randomUUID(),
+      });
+
+      if (response.statusCode !== 200) {
+        return openGlobalNotification({
+          description: response.message || 'Failed to create charge',
+          message: 'Error',
+          type: 'error',
+        });
+      }
 
       setFundPayload({
-        transactionId: transactionId,
+        transactionId: response.data.transactionid,
         amount: data.amount,
         reference: '',
       });
@@ -57,8 +68,14 @@ export default function AmountModal({ isOpen, setIsOpen, type }: Props) {
       }
     } catch (err) {
       console.log(err);
+      openGlobalNotification({
+        description: 'An error occurred while creating charge',
+        message: 'Error',
+        type: 'error',
+      });
     }
   };
+
   return (
     <Modal
       customWidth={450}
