@@ -89,10 +89,10 @@ const LoginForm = () => {
       <div className="min-w-[400px] mt-14">
         <div className="">
           <h1 className="text-[26px] font-semibold">
-            We’re glad you’re back! 😊
+            Login to your sandbox account
           </h1>
           <p className="text-[#666666] text-sm mt-1">
-            Welcome back chief, let’s keep the energy moving!
+            Explore our APIs safely — pick up where you left off.
           </p>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
