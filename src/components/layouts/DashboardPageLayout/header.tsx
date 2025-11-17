@@ -32,7 +32,6 @@ export default function Header() {
     useOutflowStore();
   const pathname = usePathname();
   const [openMoveMoney, setOpenMoveMoney] = useState(false);
-  const [isLive, setIsLive] = useState<boolean>(false);
 
   // const { data, isLoading } = useGetMerchantInfo();
 
@@ -92,28 +91,12 @@ export default function Header() {
           </Button>
         </Link>
 
-        <div className="px-4 flex items-center gap-3 border border-y-0 border-[#EAECF0] w-auto h-[40px]">
-          <>
-            <Switch checked={isLive} onChange={() => setIsLive(!isLive)} />
-            <p
-              className={`text-sm font-medium ${
-                isLive ? 'text-primary-500' : 'text-secondary-500'
-              }`}
-            >
-              {isLive ? 'Live Mode' : 'Test Mode'}
-            </p>
-          </>
-          {/* {!isLoading && data?.data?.business_Id && data?.data?.business_Id !== '' ? (
-          ) : (
-            <Tooltip
-              placement="top"
-              color="white"
-              title={'Your business is in Test mode. Complete KYC to enable live transactions'}
-            >
-              <Button className="!border !border-[#EAECF0] !text-xs !rounded-3xl">Test mode</Button>
-            </Tooltip>
-          )} */}
+        <div className="relative px-5 py-2 flex items-center gap-2 bg-red-50 border border-red-200 rounded-full h-[40px]">
+          <span className="absolute -top-1 -right-1 h-[12px] w-[12px] rounded-full bg-[#C10000] border-2 border-white animate-pulse"></span>
+          <span className="h-[8px] w-[8px] rounded-full bg-[#C10000]"></span>
+          <p className="text-sm font-semibold text-[#C10000]">Test Mode</p>
         </div>
+
         <Button
           onClick={() => setOpenNotification(true)}
           className="!bg-[#F2F4F7] relative !border-none !p-0 !h-[32px] !w-[32px]"
