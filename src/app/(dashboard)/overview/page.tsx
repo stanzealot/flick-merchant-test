@@ -145,7 +145,7 @@ const OverviewPage = () => {
   const formatBalance = React.useMemo(() => {
     if (!balanceData?.data) return [];
 
-    console.log("balanceData", balanceData.data);
+    console.log('balanceData', balanceData.data);
     return balanceData.data
       .map((balance: IBalance) => {
         const iso =
@@ -292,34 +292,31 @@ const OverviewPage = () => {
     },
 
     {
-      dataIndex: 'eventname',
-      key: 'eventname',
+      dataIndex: 'status',
+      key: 'status',
       render: (_: any, row: any) => (
         <button
           className={`flex items-center gap-[5px] text-[13px] font-medium pl-2 pr-5 py-[3px] ${
-            row?.eventname?.toLowerCase() === 'charge.success' ||
-            row?.eventname?.toLowerCase() === 'transfer.success'
+            row?.status?.toLowerCase() === 'success'
               ? 'text-[#067647] border border-[#ABEFCE] bg-[#ECFDF3] rounded-3xl'
-              : row?.eventname?.toLowerCase() === 'charge.pending' ||
-                row?.eventname?.toLowerCase() === 'transfer.pending'
+              : row?.status?.toLowerCase() === 'pending' ||
+                row?.status?.toLowerCase() === 'cardpending'
               ? 'text-[#F79009] border border-[#F79009] bg-[#FFF8F0] rounded-md'
               : 'text-[#B42318] border border-[#FECDCA] bg-[#FEF3F2] rounded-3xl '
           }`}
         >
-          {row?.eventname?.toLowerCase() === 'charge.success' ||
-          row?.eventname?.toLowerCase() === 'transfer.success' ? (
+          {row?.status?.toLowerCase() === 'success' ? (
             <FaCheck />
-          ) : row?.eventname?.toLowerCase() === 'charge.pending' ||
-            row?.eventname?.toLowerCase() === 'transfer.pending' ? (
+          ) : row?.status?.toLowerCase() === 'pending' ||
+            row?.status?.toLowerCase() === 'cardpending' ? (
             <GoDotFill />
           ) : (
             <IoCloseSharp />
           )}
-          {row?.eventname?.toLowerCase() === 'charge.success' ||
-          row?.eventname?.toLowerCase() === 'transfer.success'
+          {row?.status?.toLowerCase() === 'success'
             ? 'Successful'
-            : row?.eventname?.toLowerCase() === 'charge.pending' ||
-              row?.eventname?.toLowerCase() === 'transfer.pending'
+            : row?.status?.toLowerCase() === 'pending' ||
+              row?.status?.toLowerCase() === 'cardpending'
             ? 'Pending'
             : 'Failed'}
         </button>

@@ -19,11 +19,13 @@ type overviewStore = {
     transactionId: string;
     amount: string;
     reference: string;
+    paymentMethod?: 'transfer' | 'card';
   };
   setFundPayload: (fundPayload: {
     transactionId: string;
     amount: string;
     reference: string;
+    paymentMethod?: 'transfer' | 'card'; // Add this line here too
   }) => void;
   openApiFundModal: boolean;
   setOpenApiFundModal: (openApiFundModal: boolean) => void;
@@ -47,7 +49,10 @@ type overviewStore = {
     currency: string;
     token?: string;
   };
-  setFundWalletPayload: (fundWalletPayload: { currency: string; token?: string }) => void;
+  setFundWalletPayload: (fundWalletPayload: {
+    currency: string;
+    token?: string;
+  }) => void;
   openBalanceAmountModal: boolean;
   setOpenBalanceAmountModal: (openBalanceAmountModal: boolean) => void;
   paymentMethod: string;
@@ -77,6 +82,7 @@ const useOverviewStore = create<overviewStore>((set) => ({
     transactionId: '',
     amount: '',
     reference: '',
+    paymentMethod: undefined,
   },
   openApiFundModal: false,
   setOpenApiFundModal: (openApiFundModal) => set({ openApiFundModal }),
@@ -103,7 +109,8 @@ const useOverviewStore = create<overviewStore>((set) => ({
   fundWalletArea: '',
   setFundWalletArea: (fundWalletArea) => set({ fundWalletArea }),
   openBalanceAmountModal: false,
-  setOpenBalanceAmountModal: (openBalanceAmountModal) => set({ openBalanceAmountModal }),
+  setOpenBalanceAmountModal: (openBalanceAmountModal) =>
+    set({ openBalanceAmountModal }),
   paymentMethod: '',
   setPaymentMethod: (paymentMethod) => set({ paymentMethod }),
   comingSoonType: '',

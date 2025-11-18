@@ -48,6 +48,8 @@ const fundWalletLink = (payload: Payload): Promise<any> =>
 
 const merchantKyc = (payload: Payload): Promise<any> =>
   request.post({ payload, route: API.routes.overview.merchantKyc });
+const nubanCharge = (payload: Payload): Promise<any> =>
+  request.post({ payload, route: API.routes.overview.nubanCharge });
 
 const overview = {
   addCurrency,
@@ -58,6 +60,7 @@ const overview = {
   paymentCards,
   createCharge,
   charge,
+  nubanCharge,
   verifyOtp,
   getEncryptionKey,
   merchantKyc,
