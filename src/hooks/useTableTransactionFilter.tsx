@@ -31,11 +31,6 @@ const useNewTransactionTableFilter = ({
     const filterAndSetData = async () => {
       setLoading(true);
 
-      // Debug: Check what we're receiving
-      console.log('Data received by useNewTableFilter:', data);
-      console.log('Data type:', typeof data);
-      console.log('Is array:', Array.isArray(data));
-
       // Ensure data is an array before filtering
       if (!data || !Array.isArray(data)) {
         console.log('Data is not an array, setting empty array');

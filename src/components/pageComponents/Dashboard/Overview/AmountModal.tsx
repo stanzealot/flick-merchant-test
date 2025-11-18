@@ -27,6 +27,8 @@ export default function AmountModal({ isOpen, setIsOpen, type }: Props) {
     setOpenFundPayout,
     setFundPayload,
     setOpenFundApiWallet,
+    setOpenAccountPreview,
+    fundPayload,
   } = useOverviewStore();
 
   const {
@@ -40,6 +42,20 @@ export default function AmountModal({ isOpen, setIsOpen, type }: Props) {
 
   const handleConfirm = async (data: FieldValues) => {
     try {
+      // Check if it's bank transfer
+      if (fundPayload.paymentMethod === 'transfer') {
+        setFundPayload({
+          transactionId: crypto.randomUUID(),
+          amount: data.amount,
+          reference: '',
+          paymentMethod: 'transfer',
+        });
+        setIsOpen(false);
+        setOpenAccountPreview(true);
+        return;
+      }
+
+      // For card payment - create charge
       const response = await overview.createCharge({
         amount: Number(data.amount),
         currency: 'NGN',
@@ -58,6 +74,7 @@ export default function AmountModal({ isOpen, setIsOpen, type }: Props) {
         transactionId: response.data.transactionid,
         amount: data.amount,
         reference: '',
+        paymentMethod: 'card',
       });
 
       setIsOpen(false);

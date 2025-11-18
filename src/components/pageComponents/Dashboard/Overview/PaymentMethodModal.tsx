@@ -16,11 +16,21 @@ type Props = Readonly<{
 }>;
 
 export default function PaymentMethodModal({ isOpen, setIsOpen }: Props) {
-  const { setOpenBalance, setOpenAccountPreview, setOpenAmountModal } = useOverviewStore();
+  const {
+    setOpenBalance,
+    setOpenAccountPreview,
+    setOpenAmountModal,
+    setFundPayload,
+  } = useOverviewStore();
   const [paymentMethod, setPaymentMethod] = useState<string>('');
 
   return (
-    <Modal customWidth={470} closeIcon={null} open={isOpen} onCancel={() => setIsOpen(false)}>
+    <Modal
+      customWidth={470}
+      closeIcon={null}
+      open={isOpen}
+      onCancel={() => setIsOpen(false)}
+    >
       <BackButton
         onClick={() => {
           setPaymentMethod('');
@@ -30,7 +40,9 @@ export default function PaymentMethodModal({ isOpen, setIsOpen }: Props) {
       />
 
       <div className="mt-4">
-        <h1 className="text-sm font-medium text-[#101828]">Fund Payout Balance</h1>
+        <h1 className="text-sm font-medium text-[#101828]">
+          Fund Payout Balance
+        </h1>
         <p className="text-[13px] text-[#475467]">Select your payment method</p>
       </div>
 
@@ -56,7 +68,9 @@ export default function PaymentMethodModal({ isOpen, setIsOpen }: Props) {
               Top-up your balance via <strong>Dedicated Virtual Account</strong>
             </p>
           </div>
-          {paymentMethod === 'transfer' && <FaCheckCircle className="text-primary-500 text-xl" />}
+          {paymentMethod === 'transfer' && (
+            <FaCheckCircle className="text-primary-500 text-xl" />
+          )}
           {paymentMethod === '' && (
             <GrRadial
               size={16}
@@ -86,7 +100,9 @@ export default function PaymentMethodModal({ isOpen, setIsOpen }: Props) {
               Top-up your balance via <strong>Card or Payout Balance</strong>
             </p>
           </div>
-          {paymentMethod === 'other' && <FaCheckCircle className="text-primary-500 text-xl" />}
+          {paymentMethod === 'other' && (
+            <FaCheckCircle className="text-primary-500 text-xl" />
+          )}
           {paymentMethod === '' && (
             <GrRadial
               size={16}
@@ -113,13 +129,21 @@ export default function PaymentMethodModal({ isOpen, setIsOpen }: Props) {
               setIsOpen(false);
               setOpenAccountPreview(true);
             } else if (paymentMethod === 'other') {
+              setFundPayload({
+                transactionId: '',
+                amount: '',
+                reference: '',
+                paymentMethod: 'card',
+              });
               setIsOpen(false);
               setOpenAmountModal(true);
             }
           }}
           disabled={paymentMethod === ''}
           className={`${
-            paymentMethod === '' ? '!bg-primary-300 ' : '!bg-primary-500 hover:!bg-primary-700 '
+            paymentMethod === ''
+              ? '!bg-primary-300 '
+              : '!bg-primary-500 hover:!bg-primary-700 '
           } !border-none !font-semibold !h-[50px] !rounded-[12px]!text-sm !text-white !w-[200px]`}
         >
           Confirm

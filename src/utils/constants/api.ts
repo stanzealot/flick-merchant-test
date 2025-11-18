@@ -21,7 +21,7 @@ export const API = {
       transactionGraph: '/transaction-graph',
       addCurrency: '/merchant/add-currency',
       paymentCards: '/get-all-payment-card',
-      createCharge: 'business/create-charge', 
+      createCharge: 'business/create-charge',
       charge: 'business/charge',
       verifyOtp: '/verify-otp',
       verifyPin: '/verify-pin',
@@ -30,6 +30,7 @@ export const API = {
       setLimit: '/set-low-limit',
       getIntentCode: '/get-intent-code',
       fundWalletLink: '/fund-wallet-link',
+      nubanCharge: 'business/nuban-charge',
     },
 
     directDebit: {
