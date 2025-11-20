@@ -77,15 +77,13 @@ export default function Content({ children }: Readonly<Props>) {
   //     setOpenBalancesModal,
   //   } = useTopMenuStore();
 
-  //   const {
-  //     openLimitModal,
-  //     setOpenLimitModal,
-  //     openFundWallet,
-  //     setOpenFundWallet,
-  //     fundWalletPayload,
-  //     openBalanceAmountModal,
-  //     setOpenBalanceAmountModal,
-  //   } = useOverviewStore();
+  const {
+    openFundWallet,
+    setOpenFundWallet,
+    fundWalletPayload,
+    openBalanceAmountModal,
+    setOpenBalanceAmountModal,
+  } = useOverviewStore();
 
   return (
     <Layout.Content className="px-5 py-5">
@@ -117,9 +115,9 @@ export default function Content({ children }: Readonly<Props>) {
             /> */}
 
       {/* <BalancesModal isOpen={openBalancesModal} setIsOpen={setOpenBalancesModal} />
-            <SetLimitModal isOpen={openLimitModal} setIsOpen={setOpenLimitModal} />
-            <FundWallet isOpen={openFundWallet} setIsOpen={setOpenFundWallet} payload={fundWalletPayload} />
-            <BalanceAmountModal isOpen={openBalanceAmountModal} setIsOpen={setOpenBalanceAmountModal} /> */}
+            <SetLimitModal isOpen={openLimitModal} setIsOpen={setOpenLimitModal} /> */}
+      <FundWallet isOpen={openFundWallet} setIsOpen={setOpenFundWallet} payload={fundWalletPayload} />
+      <BalanceAmountModal isOpen={openBalanceAmountModal} setIsOpen={setOpenBalanceAmountModal} />
     </Layout.Content>
   );
 }

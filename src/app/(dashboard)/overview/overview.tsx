@@ -154,6 +154,7 @@ const OverviewPage = () => {
         label: getCurrencySymbol(balance.currency).name,
         bgColor: getCurrencySymbol(balance.currency).color,
         currencySymbol: getCurrencySymbol(balance.currency).symbol,
+        currency: balance.currency,
       };
     })
     .sort((a: IBalanceCard, b: IBalanceCard) => b.balance - a.balance);
@@ -367,6 +368,7 @@ const OverviewPage = () => {
                         label={card.label}
                         bgColor={card.bgColor}
                         currencySymbol={card.currencySymbol}
+                        currency={card.currency}
                       />
                     ))
                   )}

@@ -11,6 +11,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { openGlobalNotification } from '@/src/components/blocks/toast-notification';
 import overview from '@/src/app/api/services/overview';
 import { ChangeEvent } from 'react';
+import {
+  FOREIGN_DIRECT_DEBIT_CURRENCIES,
+  USE_SANDBOX_CHECKOUT,
+  buildSandboxCheckoutUrl,
+} from '@/src/utils/constants/env';
 
 type Props = {
   readonly isOpen: boolean;
@@ -37,14 +42,44 @@ export default function BalanceAmountModal({ isOpen, setIsOpen }: Props) {
   });
 
   const onSubmit = async (data: FieldValues) => {
-    try {
-      const response = await overview.fundWalletLink({
-        currency_collected: fundWalletPayload.currency,
-        currency_settled: fundWalletPayload.currency,
-        amount: String(Number(data.amount) * 100),
-        token: fundWalletPayload.token,
-        call_source: fundWalletArea,
+    if (!fundWalletPayload.currency) {
+      return openGlobalNotification({
+        description: 'Select a wallet to fund and try again.',
+        message: 'Missing currency',
+        type: 'error',
       });
+    }
+
+    const payload = {
+      currency_collected: fundWalletPayload.currency,
+      currency_settled: fundWalletPayload.currency,
+      amount: String(Number(data.amount) * 100),
+      call_source: fundWalletArea || 'balance',
+      ...(fundWalletPayload.token ? { token: fundWalletPayload.token } : {}),
+    };
+
+    const shouldUseSandbox =
+      USE_SANDBOX_CHECKOUT &&
+      FOREIGN_DIRECT_DEBIT_CURRENCIES.includes(fundWalletPayload.currency);
+
+    if (shouldUseSandbox) {
+      const placeholderId = `${fundWalletPayload.currency.toLowerCase()}-${Date.now()}`;
+      const sandboxUrl = buildSandboxCheckoutUrl(placeholderId);
+
+      console.log('[sandbox-direct-debit]', payload);
+
+      setIsRedirecting(true);
+      router.push(sandboxUrl);
+      openGlobalNotification({
+        description: 'Redirecting to sandbox checkout...',
+        message: 'Success',
+        type: 'success',
+      });
+      return;
+    }
+
+    try {
+      const response = await overview.fundWalletLink(payload);
 
       if (response?.statusCode !== 200) {
         return openGlobalNotification({

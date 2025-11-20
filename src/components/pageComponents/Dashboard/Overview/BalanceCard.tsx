@@ -6,23 +6,48 @@ import { Button } from "antd";
 import { FaArrowRight } from "react-icons/fa6";
 import useOverviewStore from "@/src/utils/store/overviewStore";
 import { formatNumber } from "@/src/utils/functions";
+import { FOREIGN_DIRECT_DEBIT_CURRENCIES } from "@/src/utils/constants/env";
 
 const BalanceCard = ({
-    iso,
-    balance,
-    label,
-    bgColor,
-    currencySymbol,
-    onSelect,
+  iso,
+  balance,
+  label,
+  bgColor,
+  currencySymbol,
+  currency,
+  onSelect,
 }: {
-    iso: string;
-    balance: number | string;
-    label: string;
-    bgColor: string;
-    currencySymbol: string;
-    onSelect?: () => void;
+  iso: string;
+  balance: number | string;
+  label: string;
+  bgColor: string;
+  currencySymbol: string;
+  currency?: string;
+  onSelect?: () => void;
 }) => {
-    const { setOpenBalance, setOpenFundWallet, setFundWalletPayload, setFundWalletArea } = useOverviewStore();
+  const { setOpenBalance, setOpenFundWallet, setFundWalletPayload, setFundWalletArea } =
+    useOverviewStore();
+  const supportedCurrencies = ['NGN', ...FOREIGN_DIRECT_DEBIT_CURRENCIES];
+  const canFundFromCard = currency ? supportedCurrencies.includes(currency) : false;
+
+  const handleFundClick = () => {
+    onSelect && onSelect();
+    if (!currency) return;
+
+    setFundWalletArea('overview');
+
+    if (currency === 'NGN') {
+      setFundWalletPayload({ currency: 'NGN' });
+      setOpenBalance(true);
+      return;
+    }
+
+    if (FOREIGN_DIRECT_DEBIT_CURRENCIES.includes(currency)) {
+      setFundWalletPayload({ currency });
+      setOpenFundWallet(true);
+    }
+  };
+
     return (
         <div className={clsx(bgColor, `w-[355px] max-w-[355px] h-[170px] px-5 py-3 rounded-xl flex flex-col`)}>
             <div className="flex items-center gap-2">
@@ -46,30 +71,13 @@ const BalanceCard = ({
                         {formatNumber(Number(balance) / 100)}
                     </h1>
 
-                    {["₦", "$", "£", "€"].includes(currencySymbol) && (
-                        <Button
-                            onClick={() => {
-                                onSelect && onSelect();
-
-                                setFundWalletArea("overview");
-                                if (currencySymbol === "₦") {
-                                    setFundWalletPayload({ currency: "NGN" });
-                                    setOpenBalance(true);
-                                } else if (currencySymbol === "$") {
-                                    setFundWalletPayload({ currency: "USD" });
-                                    setOpenFundWallet(true);
-                                } else if (currencySymbol === "£") {
-                                    setFundWalletPayload({ currency: "GBP" });
-                                    setOpenFundWallet(true);
-                                } else if (currencySymbol === "€") {
-                                    setFundWalletPayload({ currency: "EUR" });
-                                    setOpenFundWallet(true);
-                                }
-                            }}
-                            className="!border-none !bg-transparent !outline-none !p-0 !w-[28px] !h-[28px] custom-shadow"
-                        >
-                            <FaArrowRight className="text-lg" />
-                        </Button>
+                    {canFundFromCard && (
+                      <Button
+                        onClick={handleFundClick}
+                        className="!border-none !bg-transparent !outline-none !p-0 !w-[28px] !h-[28px] custom-shadow"
+                      >
+                        <FaArrowRight className="text-lg" />
+                      </Button>
                     )}
                 </div>
             </div>

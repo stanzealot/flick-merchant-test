@@ -8,8 +8,6 @@ import BackButton from '@/src/components/ui-components/Buttons/BackButton';
 import useOverviewStore from '@/src/utils/store/overviewStore';
 import { Button } from 'antd';
 import { GrRadial } from 'react-icons/gr';
-import { openGlobalNotification } from '@/src/components/blocks/toast-notification';
-import overview from '@/src/app/api/services/overview';
 
 type Props = Readonly<{
   isOpen: boolean;
@@ -29,26 +27,30 @@ export default function FundWallet({ isOpen, setIsOpen, payload }: Props) {
     setComingSoonType,
   } = useOverviewStore();
 
-  const handleIntentCode = async () => {
-    try {
-      const response = await overview.getIntentCode();
-      if (response.status !== 200) {
-        return openGlobalNotification({
-          message: 'Error',
-          description: 'Token generation failed',
-          type: 'error',
-        });
-      }
+  const handleConfirm = () => {
+    if (!paymentMethod) return;
 
-      const token = response.token;
+    setComingSoonType('foreign');
 
-      setFundWalletPayload({ currency: payload.currency, token });
-    } catch (error: any) {
-      return openGlobalNotification({
-        message: 'Error',
-        description: error.response.data.message,
-        type: 'error',
-      });
+    if (paymentMethod === 'direct-debit') {
+      setFundWalletPayload({ currency: payload.currency });
+      setPaymentMethod('direct-debit');
+      setIsOpen(false);
+      setOpenBalanceAmountModal(true);
+      return;
+    }
+
+    if (paymentMethod === 'transfer') {
+      setPaymentMethod('transfer');
+      setIsOpen(false);
+      setOpenComingSoon(true);
+      return;
+    }
+
+    if (paymentMethod === 'other') {
+      setPaymentMethod('other');
+      setIsOpen(false);
+      setOpenComingSoon(true);
     }
   };
 
@@ -168,23 +170,7 @@ export default function FundWallet({ isOpen, setIsOpen, payload }: Props) {
           Cancel
         </Button>
         <Button
-          onClick={() => {
-            handleIntentCode();
-            setComingSoonType('foreign');
-            if (paymentMethod === 'direct-debit') {
-              setPaymentMethod('direct-debit');
-              setIsOpen(false);
-              setOpenBalanceAmountModal(true);
-            } else if (paymentMethod === 'transfer') {
-              setPaymentMethod('transfer');
-              setIsOpen(false);
-              setOpenComingSoon(true);
-            } else if (paymentMethod === 'other') {
-              setPaymentMethod('other');
-              setIsOpen(false);
-              setOpenComingSoon(true);
-            }
-          }}
+          onClick={handleConfirm}
           disabled={paymentMethod === ''}
           className={`${
             paymentMethod === '' ? '!bg-primary-300 ' : '!bg-primary-500 hover:!bg-primary-700 '
