@@ -376,7 +376,7 @@ const BalancePage = () => {
                         </h1>
                       </div>
 
-                      {['NGN', 'USD', 'GBP', 'EUR'].includes(item.currency) && (
+                      {['NGN', 'USD', 'GBP', 'EUR', 'GHS', 'KES'].includes(item.currency) && (
                         <div className="flex flex-row items-center justify-between">
                           {/* <Button className="!border-none !outline-none !text-primary-500 !font-medium">
                             Set limit

@@ -371,6 +371,7 @@ const OverviewPage = () => {
                         label={card.label}
                         bgColor={card.bgColor}
                         currencySymbol={card.currencySymbol}
+                        currency={card.currency}
                       />
                     ))
                   )}
