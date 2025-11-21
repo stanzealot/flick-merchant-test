@@ -14,7 +14,6 @@ import { IoIosArrowDown } from 'react-icons/io';
 import Switch from '../../ui-components/Switch';
 import { LiaFileAlt } from 'react-icons/lia';
 import { GoBellFill } from 'react-icons/go';
-import { FlaskConical } from 'lucide-react';
 import useTopMenuStore from '@/src/utils/store/topMenuStore';
 import useOutflowStore from '@/src/utils/store/outflowStore';
 import useGetMerchantInfo from '@/src/app/api/hooks/authentication/useGetMerchantInfo';
@@ -94,7 +93,6 @@ export default function Header() {
 
         <div className="relative px-5 py-2 flex items-center gap-2 bg-red-50 border border-red-200 rounded-full h-[40px]">
           <span className="absolute -top-1 -right-1 h-[12px] w-[12px] rounded-full bg-[#C10000] border-2 border-white animate-pulse"></span>
-          <FlaskConical className="h-4 w-4 text-[#C10000]" />
           <p className="text-sm font-semibold text-[#C10000]">Test Mode</p>
         </div>
 
