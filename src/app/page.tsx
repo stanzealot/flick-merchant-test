@@ -10,7 +10,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 import FlickFull from '@/public/images/flick-full.svg';
 import { motion } from 'framer-motion';
-import { MdScience } from 'react-icons/md';
 
 import LoginForm from '@/src/components/pageComponents/Authentication/LoginForm';
 
@@ -94,7 +93,6 @@ const LoginPage = () => {
       <div className="relative flex flex-col items-center justify-center">
         <div className="absolute top-6 right-8 z-10">
           <div className="flex items-center gap-2 bg-[#FFF4ED] border-2 border-[#FF9F57] px-4 py-2 rounded-full shadow-sm">
-            <MdScience className="text-[#FF9F57] text-lg animate-pulse" />
             <span className="text-[#FF9F57] font-semibold text-sm">
               Test Mode
             </span>
