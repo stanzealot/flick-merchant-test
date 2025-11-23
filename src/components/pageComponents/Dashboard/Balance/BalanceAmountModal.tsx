@@ -11,11 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { openGlobalNotification } from '@/src/components/blocks/toast-notification';
 import overview from '@/src/app/api/services/overview';
 import { ChangeEvent } from 'react';
-import {
-  FOREIGN_DIRECT_DEBIT_CURRENCIES,
-  USE_SANDBOX_CHECKOUT,
-  buildSandboxCheckoutUrl,
-} from '@/src/utils/constants/env';
+import { FOREIGN_DIRECT_DEBIT_CURRENCIES } from '@/src/utils/constants/env';
 
 type Props = {
   readonly isOpen: boolean;
@@ -50,54 +46,68 @@ export default function BalanceAmountModal({ isOpen, setIsOpen }: Props) {
       });
     }
 
+    const isForeignCurrency = FOREIGN_DIRECT_DEBIT_CURRENCIES.includes(
+      fundWalletPayload.currency
+    );
+
     const payload = {
       currency_collected: fundWalletPayload.currency,
       currency_settled: fundWalletPayload.currency,
       amount: String(Number(data.amount) * 100),
       call_source: fundWalletArea || 'balance',
-      ...(fundWalletPayload.token ? { token: fundWalletPayload.token } : {}),
     };
 
-    const shouldUseSandbox =
-      USE_SANDBOX_CHECKOUT &&
-      FOREIGN_DIRECT_DEBIT_CURRENCIES.includes(fundWalletPayload.currency);
-
-    if (shouldUseSandbox) {
-      const placeholderId = `${fundWalletPayload.currency.toLowerCase()}-${Date.now()}`;
-      const sandboxUrl = buildSandboxCheckoutUrl(placeholderId);
-
-      console.log('[sandbox-direct-debit]', payload);
-
-      setIsRedirecting(true);
-      router.push(sandboxUrl);
-      openGlobalNotification({
-        description: 'Redirecting to sandbox checkout...',
-        message: 'Success',
-        type: 'success',
-      });
-      return;
-    }
-
     try {
-      const response = await overview.fundWalletLink(payload);
-
-      if (response?.statusCode !== 200) {
-        return openGlobalNotification({
-          description: '',
-          message: 'Failure',
-          type: 'error',
+      let response;
+      if (isForeignCurrency) {
+        response = await overview.generateForeignPayLink(payload);
+      } else {
+        response = await overview.fundWalletLink({
+          ...payload,
+          ...(fundWalletPayload.token ? { token: fundWalletPayload.token } : {}),
         });
       }
 
-      setIsRedirecting(true);
-      router.push(response?.data?.url);
-      openGlobalNotification({
-        description: response?.message,
-        message: 'Success',
-        type: 'success',
-      });
+      if (isForeignCurrency) {
+        if (response?.status !== 'success' || !response?.data?.url) {
+          return openGlobalNotification({
+            description: response?.message || 'Failed to generate checkout link',
+            message: 'Failure',
+            type: 'error',
+          });
+        }
+
+        setIsRedirecting(true);
+        router.push(response.data.url);
+        openGlobalNotification({
+          description: response?.message || 'Redirecting to checkout...',
+          message: 'Success',
+          type: 'success',
+        });
+      } else {
+        if (response?.statusCode !== 200) {
+          return openGlobalNotification({
+            description: '',
+            message: 'Failure',
+            type: 'error',
+          });
+        }
+
+        setIsRedirecting(true);
+        router.push(response?.data?.url);
+        openGlobalNotification({
+          description: response?.message,
+          message: 'Success',
+          type: 'success',
+        });
+      }
     } catch (error: any) {
       console.log('error', error);
+      openGlobalNotification({
+        description: error?.response?.data?.message || 'An error occurred',
+        message: 'Error',
+        type: 'error',
+      });
     }
   };
 
