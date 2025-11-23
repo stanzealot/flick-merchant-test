@@ -6,7 +6,6 @@ import { Button } from "antd";
 import { FaArrowRight } from "react-icons/fa6";
 import useOverviewStore from "@/src/utils/store/overviewStore";
 import { formatNumber } from "@/src/utils/functions";
-import { FOREIGN_DIRECT_DEBIT_CURRENCIES } from "@/src/utils/constants/env";
 
 const BalanceCard = ({
   iso,
@@ -27,7 +26,8 @@ const BalanceCard = ({
 }) => {
   const { setOpenBalance, setOpenFundWallet, setFundWalletPayload, setFundWalletArea } =
     useOverviewStore();
-  const supportedCurrencies = ['NGN', ...FOREIGN_DIRECT_DEBIT_CURRENCIES];
+  // Only NGN, USD, EUR, and GBP can be funded (GHS and KES are not available yet)
+  const supportedCurrencies = ['NGN', 'USD', 'EUR', 'GBP'];
   const canFundFromCard = currency ? supportedCurrencies.includes(currency) : false;
 
   const handleFundClick = () => {
@@ -42,7 +42,9 @@ const BalanceCard = ({
       return;
     }
 
-    if (FOREIGN_DIRECT_DEBIT_CURRENCIES.includes(currency)) {
+    // Only USD, EUR, and GBP are supported for foreign funding (GHS and KES excluded)
+    const foreignSupportedCurrencies = ['USD', 'EUR', 'GBP'];
+    if (foreignSupportedCurrencies.includes(currency)) {
       setFundWalletPayload({ currency });
       setOpenFundWallet(true);
     }
