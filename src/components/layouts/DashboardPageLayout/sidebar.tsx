@@ -3,7 +3,6 @@
 import { ROUTE_KEYS, ROUTE_LABELS } from '@/src/utils/constants';
 import { MenuItem } from '@/src/utils/types';
 import { Button, Layout, Menu, MenuProps } from 'antd';
-import { PiSuitcaseLight } from 'react-icons/pi';
 import FlickFull from '@/public/images/flick-full.svg';
 import { useRouter } from 'next-nprogress-bar';
 import Link from 'next/link';
@@ -16,15 +15,13 @@ import FlickLogo from '@/public/images/flick-logo.svg';
 import Image from 'next/image';
 import { LiaWalletSolid } from 'react-icons/lia';
 import { CiMoneyCheck1 } from 'react-icons/ci';
-import { IoSettingsOutline, IoDocumentAttachOutline } from 'react-icons/io5';
+import { IoSettingsOutline } from 'react-icons/io5';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { GoCopy } from 'react-icons/go';
 import CustomDropdown from '../../ui-components/CustomDropdown';
 import { getFirstLetterOfWords, logout } from '@/src/utils/functions';
 import { openGlobalNotification } from '../../blocks/toast-notification';
-import useTopMenuStore from '@/src/utils/store/topMenuStore';
 import useUserDataStore from '@/src/utils/store/userStore';
-import useGetMerchantInfo from '@/src/app/api/hooks/authentication/useGetMerchantInfo';
 
 interface LevelKeysProps {
   key?: string;
@@ -46,7 +43,6 @@ export default function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
   const { userData, clearUserData } = useUserDataStore();
-  const { setOpenCreateBusiness } = useTopMenuStore();
 
   const [open, setOpen] = useState(false);
 
@@ -192,29 +188,10 @@ export default function Sidebar() {
               <div className="flex flex-col gap-2 rounded-lg bg-white w-full py-7 px-5 custom-shadow border border-[#E7EAEE]">
                 <button
                   onClick={() => {
-                    setOpenCreateBusiness(true);
-                    setOpen(false);
-                  }}
-                  className="rounded-md flex items-center gap-2 hover:bg-primary-50 hover:text-primary-500 px-3 py-2"
-                >
-                  <PiSuitcaseLight size={18} /> Your Business
-                </button>
-
-                <Link
-                  className="hover:!bg-primary-50 hover:!text-primary-500 !px-3 !py-2 !text-[#666666]"
-                  href={ROUTE_KEYS.AGREEMENT}
-                >
-                  <button className="rounded-md flex items-center gap-2">
-                    <IoDocumentAttachOutline size={18} /> Merchant Agreement
-                  </button>
-                </Link>
-
-                <button
-                  onClick={() => {
                     logout();
                     clearUserData();
                   }}
-                  className="mt-2 rounded-md flex items-center justify-center gap-2 bg-danger-50 text-danger-500 px-3 py-2"
+                  className="rounded-md flex items-center justify-center gap-2 bg-danger-50 text-danger-500 px-3 py-2"
                 >
                   Log Out
                 </button>
