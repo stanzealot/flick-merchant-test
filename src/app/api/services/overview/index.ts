@@ -46,6 +46,9 @@ const getIntentCode = (): Promise<any> =>
 const fundWalletLink = (payload: Payload): Promise<any> =>
   request.post({ payload, route: API.routes.overview.fundWalletLink });
 
+const generateForeignPayLink = (payload: Payload): Promise<any> =>
+  request.post({ payload, route: API.routes.overview.generateForeignPayLink });
+
 const merchantKyc = (payload: Payload): Promise<any> =>
   request.post({ payload, route: API.routes.overview.merchantKyc });
 const nubanCharge = (payload: Payload): Promise<any> =>
@@ -68,6 +71,7 @@ const overview = {
   setLimit,
   getIntentCode,
   fundWalletLink,
+  generateForeignPayLink,
 };
 
 export default overview;

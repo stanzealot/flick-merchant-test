@@ -30,6 +30,7 @@ export const API = {
       setLimit: '/set-low-limit',
       getIntentCode: '/get-intent-code',
       fundWalletLink: '/fund-wallet-link',
+      generateForeignPayLink: '/business/generate-foreign-pay-link',
       nubanCharge: 'business/nuban-charge',
     },
 
