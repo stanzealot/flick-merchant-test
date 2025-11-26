@@ -26,8 +26,8 @@ const BalanceCard = ({
 }) => {
   const { setOpenBalance, setOpenFundWallet, setFundWalletPayload, setFundWalletArea } =
     useOverviewStore();
-  // Only NGN, USD, EUR, and GBP can be funded (GHS and KES are not available yet)
-  const supportedCurrencies = ['NGN', 'USD', 'EUR', 'GBP'];
+  // NGN, EUR, GBP, GHS, and KES can be funded (USD excluded)
+  const supportedCurrencies = ['NGN', 'EUR', 'GBP', 'GHS', 'KES'];
   const canFundFromCard = currency ? supportedCurrencies.includes(currency) : false;
 
   const handleFundClick = () => {
@@ -42,8 +42,8 @@ const BalanceCard = ({
       return;
     }
 
-    // Only USD, EUR, and GBP are supported for foreign funding (GHS and KES excluded)
-    const foreignSupportedCurrencies = ['USD', 'EUR', 'GBP'];
+    // EUR, GBP, GHS, and KES are supported for foreign funding (USD excluded)
+    const foreignSupportedCurrencies = ['EUR', 'GBP', 'GHS', 'KES'];
     if (foreignSupportedCurrencies.includes(currency)) {
       setFundWalletPayload({ currency });
       setOpenFundWallet(true);
