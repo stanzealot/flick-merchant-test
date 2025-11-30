@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { logout } from '@/src/utils/functions';
 import { useSettingTabs } from '@/src/utils/store/settingsStore';
 import { ROUTE_KEYS } from '@/src/utils/constants';
+import { STORAGE_KEYS } from '@/src/utils/constants/api';
 import CustomLoader from '@/src/components/blocks/custom-loader';
 import useGetMerchantInfo from '../api/hooks/authentication/useGetMerchantInfo';
 import useUserDataStore from '@/src/utils/store/userStore';
@@ -29,6 +30,7 @@ export default function Layout({ children }: Props) {
   const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
   const [isVerified, setIsVerified] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   // Comment out the API call that might be causing issues
   // const { data, isLoading } = useGetMerchantInfo();
@@ -49,31 +51,43 @@ export default function Layout({ children }: Props) {
     router.push(ROUTE_KEYS.LOGIN);
   };
 
-  // Simplified initialization logic
+  // Authentication check - runs before rendering
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      setIsVerified(true);
+    const checkAuthentication = () => {
+      // Check for userData in Zustand store
+      const hasUserData = !!userData && !!userData.token;
+      
+      // Check for AUTH_TOKEN in localStorage
+      let hasAuthToken = false;
+      if (typeof window !== 'undefined') {
+        hasAuthToken = !!localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
+      }
+
+      // If user is not authenticated, redirect to login
+      if (!hasUserData && !hasAuthToken) {
+        console.log('⚠️ User not authenticated, redirecting to login');
+        router.push(ROUTE_KEYS.LOGIN);
+        return;
+      }
+
+      // User is authenticated, proceed with initialization
+      setIsCheckingAuth(false);
       setIsInitialized(true);
+      setIsVerified(true);
+    };
+
+    checkAuthentication();
+  }, [userData, router]);
+
+  // Simplified initialization logic (only runs if authenticated)
+  useEffect(() => {
+    if (!isInitialized || isCheckingAuth) {
       return;
     }
 
-    // For production, you can uncomment and modify this
-    /*
-    if (!isLoading) {
-      if (!data?.data?.businessId && userData?.businessId === '') {
-        handleLogout();
-      } else if (userData?.kycStatus !== 'completed') {
-        return router.push(ROUTE_KEYS.KYC_PENDING);
-      } else {
-        setIsVerified(true);
-      }
-    }
-    */
-
-    // For now, just set verified for development
-    setIsVerified(true);
-    setIsInitialized(true);
-  }, []);
+    // Additional verification logic can go here if needed
+    // For now, we just ensure the user is authenticated
+  }, [isInitialized, isCheckingAuth]);
 
   useEffect(() => {
     window.addEventListener('mousemove', resetTimer);
@@ -90,9 +104,14 @@ export default function Layout({ children }: Props) {
     };
   }, [resetTimer]);
 
-  // Show loading only if not initialized
-  if (!isInitialized) {
+  // Show loading while checking authentication or if not initialized
+  if (isCheckingAuth || !isInitialized) {
     return <CustomLoader />;
+  }
+
+  // If user is not authenticated (shouldn't reach here due to redirect, but safety check)
+  if (!userData && typeof window !== 'undefined' && !localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN)) {
+    return null; // Redirect is happening
   }
 
   return (

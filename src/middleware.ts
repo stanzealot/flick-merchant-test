@@ -30,10 +30,6 @@ export const config = {
 };
 
 export async function middleware(request: NextRequest) {
-  if (process.env.NODE_ENV === 'development') {
-    return NextResponse.next();
-  }
-
   // Check for auth token in cookies
   const authToken = request.cookies.get(STORAGE_KEYS.AUTH_TOKEN)?.value;
 
