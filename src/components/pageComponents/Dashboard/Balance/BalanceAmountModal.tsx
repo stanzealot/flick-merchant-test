@@ -12,6 +12,7 @@ import { openGlobalNotification } from '@/src/components/blocks/toast-notificati
 import overview from '@/src/app/api/services/overview';
 import { ChangeEvent } from 'react';
 import { FOREIGN_DIRECT_DEBIT_CURRENCIES } from '@/src/utils/constants/env';
+import { getCurrencySymbol } from '@/src/utils/functions';
 
 type Props = {
   readonly isOpen: boolean;
@@ -111,14 +112,10 @@ export default function BalanceAmountModal({ isOpen, setIsOpen }: Props) {
     }
   };
 
-  let currencySymbol = '€';
-  if (fundWalletPayload.currency === 'NGN') {
-    currencySymbol = '₦';
-  } else if (fundWalletPayload.currency === 'USD') {
-    currencySymbol = '$';
-  } else if (fundWalletPayload.currency === 'GBP') {
-    currencySymbol = '£';
-  }
+  // Get currency symbol dynamically using the utility function
+  const currencySymbol = fundWalletPayload.currency
+    ? getCurrencySymbol(fundWalletPayload.currency).symbol
+    : '€';
 
   return (
     <Modal customWidth={450} closeIcon={null} open={isOpen} onCancel={() => setIsOpen(false)}>
